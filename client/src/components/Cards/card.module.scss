@@ -1,0 +1,32 @@
+.wrap {
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 16px;
+	background-color: darkcyan;
+	transition: all 0.2s ease-in;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		transform: scale(1.03);
+	}
+	.imgGame {
+		width: 200px;
+		height: 200px;
+	}
+	.btn {
+		padding: 10px 20px;
+		border: 1px solid black;
+		border-radius: 0 0 10px 10px;
+		background: linear-gradient(to right, red, #a30202);
+		color: #fff;
+		text-align: center;
+		font-size: 20px;
+		cursor: pointer;
+		transition: all 0.2s ease-in;
+		&:focus {
+			outline: none; // Убирает подчеркивание на фокусе
+		}
+	}
+}

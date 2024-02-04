@@ -1,0 +1,61 @@
+.wrap {
+	width: 300px;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.scrollport {
+		width: 180px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-right: 10px;
+	}
+	.scrollportDop {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+	}
+	.block,
+	.dozen {
+		box-sizing: border-box;
+		width: 37px;
+		height: 37px;
+		font-size: 23px;
+		margin: 4px;
+		padding: 10px;
+		background-color: tomato;
+		border-radius: 7px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all 0.3s ease;
+		&:hover {
+			scale: 1.1;
+			cursor: pointer;
+			background-color: red;
+		}
+	}
+	.block {
+		&:first-child {
+			width: 200px;
+		}
+	}
+	.dozen {
+		width: 150px;
+		margin-right: 10px;
+	}
+	.rhombRed,
+	.rhombBlack {
+		width: 25px;
+		height: 25px;
+		background-color: #ff0000;
+		transform: rotate(45deg);
+		margin: 10px;
+		border: 1px solid black;
+	}
+	.rhombBlack {
+		background-color: #000;
+	}
+}
