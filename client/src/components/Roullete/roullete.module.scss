@@ -4,6 +4,21 @@
 	justify-content: space-around;
 	height: 100vh;
 	width: 100%;
+	.message_win,
+	.message_lose {
+		width: max-content;
+		padding: 10px 15px;
+		background-color: green;
+		border-radius: 5px;
+		position: absolute;
+		top: 110px;
+		right: 50px;
+		color: white;
+		font-size: 17px;
+	}
+	.message_lose {
+		background-color: red;
+	}
 
 	.form_1 {
 		height: 100vh;

@@ -28,3 +28,44 @@ code {
 .fildBank {
 	flex-basis: 30%;
 }
+
+/* --------Auth----------- */
+.wrap_auth {
+	height: 100vh;
+	background: url(../public/imgs/main-bg.png) no-repeat center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.form__auth {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 300px;
+	height: 230px;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 17px;
+	backdrop-filter: blur(6px);
+	background: rgba(255, 255, 255, 0.8);
+	padding: 20px;
+	border-radius: 10px;
+}
+.form__auth input {
+	height: 25px;
+	border-radius: 5px;
+	padding-left: 10px;
+	font-size: 17px;
+}
+.form__auth button {
+	height: 35px;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: tomato;
+	transition: all 0.2s ease;
+	font-size: 17px;
+}
+.form__auth button:hover {
+	scale: 1.03;
+	background-color: rgb(252, 76, 45);
+}

@@ -10,7 +10,7 @@ const MyRoutes = () => {
 		<Routes>
 			<Route path='/main' element={<MainPage />} />
 			<Route path='/game/roullete' element={<GamePage />} />
-			<Route path='/about' element={<AuthPage />} />
+			<Route path='/auth' element={<AuthPage />} />
 		</Routes>
 	)
 }

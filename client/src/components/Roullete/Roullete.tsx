@@ -10,13 +10,15 @@ const Roulette = () => {
 		((1 / 37) * 360) / 2
 	)
 	const [currentBlur, setcurrentBlur] = useState<number>(0)
-	const [currentCell, setCurrentCell] = useState<number>(0) // ответ на рулетку
 	const [handleBtn, setHandleBtn] = useState<boolean>(false) //Выбор ячеуки - отбражает ячейки
 	const [isBtn, setIsBtn] = useState<boolean>(true) //Выбор ячеуки - кнопка изначально отображается
 	const [isYes, setIsYes] = useState<boolean>(false)
 	const [isNo, setIsNo] = useState<boolean>(false)
 	const [userNum, setUserNum] = useState<number[]>([]) //то что выбрал пользователь
 	const [stake, setStake] = useState<number>(0) //ставка пользователя
+	const [message, setMessage] = useState<boolean>(false)
+	const [isWin, setIsWin] = useState<boolean>(false)
+	const [oldBank, setOldBank] = useState<number>(store.balans)
 
 	const onHandleBtn = (): void => {
 		setHandleBtn(!handleBtn)
@@ -76,12 +78,23 @@ const Roulette = () => {
 		setcurrentBlur(8)
 		const spinInterval =
 			getRandomInt(0, order.length - 1) * cellDegrees + getRandomInt(3, 4) * 360
-		setCurrentLength(currentLength + spinInterval)
+
+		// Alert to show the predicted cell before spinning
+		const predictedCell = getCellNumber(currentLength + spinInterval)
+		alert(`Predicted Cell: ${predictedCell}`)
+
+		const totalSpinDegrees = currentLength + spinInterval
 
 		setTimeout(() => {
-			setIsBtn(true) // отображаю кнопку для выблра ячеек
+			setcurrentBlur(0)
+			setCurrentLength(totalSpinDegrees) // Синхронизировать углы вращения
+		}, spinInterval)
 
-			if (userNum.includes(currentCell)) {
+		setTimeout(() => {
+			setIsBtn(true) // отображаю кнопку для выбора ячеек
+
+			if (userNum.includes(predictedCell)) {
+				setIsWin(true)
 				switch (userNum.length) {
 					case 1:
 						store.StraightUp(stake)
@@ -112,19 +125,29 @@ const Roulette = () => {
 				}
 			} else {
 				store.loss(stake)
+				setIsWin(false)
 			}
+			setTimeout(() => {
+				setMessage(false)
+				setOldBank(store.balans)
+			}, 5000)
+			setMessage(true)
 		}, 10000)
-
-		setTimeout(() => {
-			setcurrentBlur(0)
-			const totalDegrees = currentLength + spinInterval
-			const cellNumber = getCellNumber(totalDegrees)
-			setCurrentCell(cellNumber)
-		}, spinInterval)
 	}
 
 	return (
 		<div className={styles.roulette}>
+			{message && isWin && (
+				<div className={styles.message_win}>
+					We won {store.balans - oldBank} dollars
+				</div>
+			)}
+			{message && !isWin && (
+				<div className={styles.message_lose}>
+					You lost ${oldBank - store.balans}
+				</div>
+			)}
+
 			<div className={styles.form_1}>
 				{handleBtn && <Srcoll returnNum={userCheck} />}
 			</div>
